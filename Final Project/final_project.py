@@ -44,6 +44,7 @@ def analyze_data():
     best_strategies = {}
     global_best = {"crypto": None, "strategy": None, "profit": float("-inf")}
 
+    #iterate through each coin
     for crypto in cryptocurrencies:
         file_path = os.path.join(output_folder, f"{crypto}_prices.csv")
         if not os.path.exists(file_path):
@@ -56,6 +57,7 @@ def analyze_data():
         strategy_profits = {'Mean Reversion': 0, 'SMA': 0, 'Bollinger Bands': 0}
 
         #start at five so theres a rolling window of 5
+        #iterate through each price pulled from the last 20 days
         for i in range(4, len(df)):
             rolling_window = df.loc[i-4:i, 'Price']
             sma = rolling_window.mean()
